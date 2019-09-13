@@ -1,5 +1,7 @@
 package edu.csc413.calculator.evaluator;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 /**
  * Operand class used to represent an operand
  * in a valid mathematical expression.
@@ -8,14 +10,20 @@ public class Operand {
     /**
      * construct operand from string token.
      */
+
+    //private String token;
+    private int value;
+
     public Operand(String token) {
 
+        this.value = Integer.parseInt(token);
     }
 
     /**
      * construct operand from integer
      */
     public Operand(int value) {
+        this.value = value;
 
     }
 
@@ -23,7 +31,8 @@ public class Operand {
      * return value of operand
      */
     public int getValue() {
-        return 0;
+        return this.value;
+
     }
 
     /**
@@ -31,6 +40,21 @@ public class Operand {
      * operand.
      */
     public static boolean check(String token) {
-        return false;
+
+        // try and catch block to test if it's an integer
+        try {
+
+            Integer.parseInt(token);
+
+        } catch(NumberFormatException e) {
+
+            return false;
+
+        } catch(NullPointerException e) {
+
+            return false;
+        }
+
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package edu.csc413.calculator.operators;
 
+
 import edu.csc413.calculator.evaluator.Operand;
 
 import java.util.HashMap;
@@ -14,9 +15,17 @@ public abstract class Operator {
     // What should its access level be?
     // Class or instance variable?
     // Is this the right declaration?
-    // HashMap operators = new HashMap();
-    // operators.put( "+", new AdditionOperator() );
-    // operators.put( "-", new SubtractionOperator() );
+    private static HashMap<String,Operator> operators = new HashMap<>();
+    static {
+        operators.put("+", new AddOperator());
+        operators.put("-", new SubtractOperator());
+        operators.put("*", new MultiplyOperator());
+        operators.put("^", new PowerOperator());
+        operators.put("/", new DivideOperator());
+        operators.put("(", new LParenthesis());
+        operators.put(")", new RParanthesis());
+
+    }
 
     /**
      * used to get the priority of an operator
@@ -25,7 +34,7 @@ public abstract class Operator {
      */
     public abstract int priority();
 
-    public Operand execute(Operand op1, Operand op2) {
+    public Operand execute(Operand op1, Operand op2){
         return null;
     }
 
@@ -37,7 +46,9 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return false;
+        // "*" or "1"
+
+        return operators.containsKey(token);
     }
 
     /**
@@ -49,6 +60,6 @@ public abstract class Operator {
      * @return reference to a Operator instance.
      */
     public static Operator getOperator(String token) {
-        return null;
+        return operators.getOrDefault(token,null);
     }
 }

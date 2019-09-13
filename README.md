@@ -1,10 +1,10 @@
 # CSC 413 - Project One
 
-## Student Name  : Name here
+## Student Name  : Mohamed Farah
 
-## Student ID    : ID here
+## Student ID    : 918378258
 
-## Student Email : Email here
+## Student Email : mfarah@mail.sfsu.edu
 
 ### Note failure to completely fill out this README.md could cause you to recieve a  0 for your project until correctly done
 

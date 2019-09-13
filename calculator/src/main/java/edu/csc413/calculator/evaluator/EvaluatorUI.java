@@ -72,6 +72,47 @@ public class EvaluatorUI extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent eventObject) {
 
+        String str = eventObject.getActionCommand();
+
+        // If C button is hit
+        if(str.equals("C")){
+            str = str.substring(0,str.length()-1);
+            txField.setText(str);
+        }
+
+
+
+        // If CE button is hit
+
+        if(str.equals("CE")){
+            str = "";
+            txField.setText("");
+        }
+
+
+        // If = button is hit
+
+        if(str.charAt(0) == '='){
+
+            if(!str.isEmpty()){
+                Evaluator e = new Evaluator();
+
+                String output = Integer.toString((e.eval(this.txField.getText())));
+
+                txField.setText(output);
+            }
+
+        }
+
+
+
+        // The rest of the buttons
+        if(str.charAt(0)!= '='){
+
+            this.txField.setText(this.txField.getText() + str);
+
+        }
+
 
     }
 }

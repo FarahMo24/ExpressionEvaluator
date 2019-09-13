@@ -93,7 +93,7 @@ public class EvaluatorTest {
     }
     @Test
     void testExpression09(){
-        String exp = "3^2/2 +(4+5)";
+        String exp = "3^2/2 + (4+5)";
         int res;
 
         Evaluator ev = new Evaluator();
@@ -101,7 +101,7 @@ public class EvaluatorTest {
         assertEquals(13,res);
     }@Test
     void testExpression10(){
-        String exp = "3^2 + (2^4) +(4+5)";
+        String exp = "3^2 + (2^4) + (4+5)";
         int res;
 
         Evaluator ev = new Evaluator();
