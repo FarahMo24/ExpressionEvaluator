@@ -35,16 +35,20 @@ public class Evaluator {
             if (!(token = this.tokenizer.nextToken()).equals(" ")) {
                 // check if token is an operand
                 if (Operand.check(token)) {
+                    // each token is just an operand or an operator
                     operandStack.push(new Operand(token));
                 } else {
                     if (!Operator.check(token)) {
+                        // if it's not an operator or an operand
                         System.out.println("*****invalid token******");
                         throw new RuntimeException("*****invalid token******");
                     }
-                    // Pushing the LParanthesis in first
+                    // Pushing the LParanthesis to open the statement
                     if(token.equals("(")) {
-                        Operator newOp;
+                        Operator newOp;// declare the reference
+                        // pass in the token to the operator class
                         newOp= Operator.getOperator(token);
+                        // push it to the operator stack and wait for ')'
                         operatorStack.push(newOp);
                         continue;
                     }
@@ -52,6 +56,7 @@ public class Evaluator {
                     // When ")" is found then process inside will finish and be popped out
                     if(token.equals(")")) {
                         while (!(operatorStack.peek().priority() == 0)) {
+                            // Use push and pop like the bottom
                             Operator oldOperator = operatorStack.pop();
                             Operand o2 = operandStack.pop();
                             Operand o1 = operandStack.pop();
@@ -73,7 +78,7 @@ public class Evaluator {
                     Operator newOperator = Operator.getOperator(token);
 
 
-                    // check if stack is empty
+                    // check if stack is not empty
                     if (!(operatorStack.isEmpty())) {
                         while (operatorStack.peek().priority() >= newOperator.priority()) {
                             // note that when we eval the expression 1 - 2 we will
@@ -84,6 +89,7 @@ public class Evaluator {
                             Operand op2 = operandStack.pop();
                             Operand op1 = operandStack.pop();
                             operandStack.push(oldOpr.execute(op1, op2));
+                           // Just when the operator stack is empty
                             if (operatorStack.isEmpty()) {
                                 // break out of the loop
                                 break;
@@ -114,7 +120,7 @@ public class Evaluator {
             Operand op1 = operandStack.pop();
             operandStack.push(currentOpr.execute(op1, op2));
         }
-
+        // get the value from operand
         return operandStack.pop().getValue();
     }
 }
