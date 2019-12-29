@@ -1,7 +1,7 @@
-# CSC 413 - Project One
+# Project: Expression Evaluator and Calculator GUI
 
-## Student Name  : Mohamed Farah
+## Purpose: 
+    Create an object that evaluates mathematical expressions
+    And create a GUI around the artifact 
 
-## Student ID    : 918378258
 
-## Student Email : mfarah@mail.sfsu.edu
